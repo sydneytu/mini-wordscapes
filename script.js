@@ -5,12 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const tileDiv = document.getElementById("tiles");
   const board = document.getElementById("board");
   const startBtn = document.getElementById("start");
+
   let timerCounter = 120;
   let numWordsFound = 0;
   let totalWords = 0;
   let numBonusWords = 0;
   let numRounds = 0;
+
   let tiles = []; // array of tile objects
+  let guessedWords = new Set(); // set of guessed words (correct & bonus)
   let usedTiles = []; // array of tiles that have been used
   let word = ""; // word to be guessed
   let targetWords = []; // array of target words
@@ -41,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
         boardTile.classList.add("boardTile");
         wordOnBoard.appendChild(boardTile);
         let letterSpan = document.createElement("span");
-        letterSpan.classList.add("boardLetter");
+        letterSpan.classList.add("boardLetter", "invisible");
+        letterSpan.innerText = letter.toUpperCase();
         boardTile.appendChild(letterSpan);
       });
       board.appendChild(wordOnBoard);
@@ -132,11 +136,99 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function enter() {}
+  function isValidGuess(userGuess) {
+    guess = userGuess.toLowerCase();
+    let isValid = false;
+    let message = "";
 
-  function backspace() {}
+    function displayErrorMessage(message) {
+      // add error message to board
+      let messageElem = document.querySelector(".errorMessage");
+      messageElem.innerText = message;
+      document.querySelector(".errorRow").appendChild(messageElem);
+      messageElem.addEventListener("animationend", function () {
+        messageElem.innerText = "";
+      });
+    }
 
-  function deleteInput() {}
+    if (targetWords.includes(guess)) {
+      // check first if word is in target words
+      if (guessedWords.has(guess)) {
+        // if target word has already been found
+        message = "Already found";
+        isValid = false;
+      } else {
+        // new word
+        numWordsFound++;
+        numWordsSpan.innerText = `${numWordsFound}/${totalWords}`;
+        guessedWords.add(guess);
+        message = "Correct!";
+        isValid = true;
+      }
+    } else if (dictionary.includes(guess)) {
+      // if not a target word, check dictionary
+      if (guessedWords.has(guess)) {
+        // if bonus word already been found
+        message = "Bonus word already found";
+      } else {
+        // new bonus word
+        numBonusWords++;
+        guessedWords.add(guess);
+        message = "Bonus word";
+      }
+      isValid = false;
+    } else {
+      // wrong word
+      if (guess.length === 3) {
+        // no 3 letter words
+        message = "No 3 letter words";
+      } else {
+        message = "Wrong word";
+      }
+      isValid = false;
+    }
+    displayErrorMessage(message);
+    return isValid;
+  }
+
+  // checks if guess is valid and display it on the board if true
+  function enter() {
+    if (userInput.value.length > 0) {
+      if (isValidGuess(userInput.value)) {
+        let correctGuess = userInput.value.toLowerCase();
+        let index = targetWords.indexOf(correctGuess);
+        let boardWord = board.childNodes[index];
+        boardWord.childNodes.forEach((tile) => {
+          // show word on board
+          tile.style.opacity = "1.0";
+          tile.childNodes[0].classList.remove("invisible");
+          tile.classList.add("wordFound");
+        });
+      }
+      deleteInput(); // clear input
+    }
+  }
+
+  // functionality of backspace button, deletes last letter and places tile back
+  function backspace() {
+    if (userInput.value.length > 0) {
+      userInput.value = userInput.value.slice(0, userInput.value.length - 1);
+      let tileObj = usedTiles[usedTiles.length - 1];
+      tileObj.tile.classList.remove("used");
+      tileObj, (used = false);
+      usedTiles.pop();
+    }
+  }
+
+  // delete entire input
+  function deleteInput() {
+    userInput.value = "";
+    tiles.forEach((tileObj) => {
+      tileObj.tile.classList.remove("used");
+      tileObj.used = false;
+    });
+    usedTiles = [];
+  }
 
   // Buttons
   document.getElementById("btnRow").childNodes.forEach((btn) => {

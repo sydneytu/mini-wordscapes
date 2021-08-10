@@ -100,6 +100,22 @@ input {
   opacity: 0.5;
 }
 
+.wordFound {
+  animation: easeinout 1s;
+}
+
+@keyframes easeinout {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .wordOnBoard {
   flex-direction: row;
 }
@@ -109,5 +125,29 @@ input {
   font-size: 25px;
   opacity: 1;
   font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fadeinout {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.errorMessage {
+  animation: fadeinout 1.5s linear 1 forwards;
+  color: white;
+  font-size: 25px;
+}
+
+.errorRow {
+  height: 25px;
+  font-weight: lighter;
   font-family: Arial, Helvetica, sans-serif;
 }

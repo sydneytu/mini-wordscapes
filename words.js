@@ -40,6 +40,8 @@ let dictionary = [
   "reopens",
   "repines",
   "reposes",
+  "spine",
+  "spines",
 ];
 
 //   ["container",["rain", "train", "contain", "container", "coin", "cone", "once"],
