@@ -1,0 +1,81 @@
+header {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.tile {
+  width: 75px;
+  height: 75px;
+  margin: 10px;
+  text-align: center;
+  background-image: linear-gradient(antiquewhite, burlywood);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0px 5px 1px -1px #d3a05f;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.tile:hover {
+  transform: scale(1.1);
+}
+
+.tile > span {
+  font-size: 2.5em;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.col {
+  justify-content: center;
+}
+
+h1 {
+  color: white;
+}
+
+#game {
+  background-color: purple;
+}
+
+input {
+  background-color: #1a1e2a;
+  border: none;
+  margin: 10px;
+  color: white;
+  font-size: 2.5em;
+  text-align: center;
+  outline: none;
+}
+
+.container #game {
+  margin: 10px;
+  padding: 10px;
+  justify-content: center;
+  align-content: center;
+}
+
+.row {
+  justify-content: center;
+  margin: 10px;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.btn-background {
+  background-image: linear-gradient(#9e22b1, #7b198a);
+  color: white;
+  border-radius: 20px;
+  width: 150px;
+  font-size: 20px;
+  box-shadow: 0px 5px 1px -1px #35053c;
+}
+
+.btn-background:hover {
+  color: white;
+  background-image: linear-gradient(#7b198a, #510a5c);
+}

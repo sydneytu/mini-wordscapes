@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini WordScapes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container" id="game">
+        <header>
+            <div class="bg-transparent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Time: <span class="headerSpan" id="timer"></span></h1>
+                        </div>
+                        <div class="col">
+                            <h1>Words: <span class="headerSpan" id="numWords"></span></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Word Board -->
+            <section class="container" id="board"></section>
+
+            <!-- User Guess & Input -->
+            <section class="container">
+                <div class="row errorRow">
+                    <p class="errorMessage"></p>
+                </div>
+
+                <div class="row">
+                    <input type="text" name="userInput" id="userInput" readonly>
+                </div>
+
+                <div class="row" id="btnRow">
+                    <button class="btn btn-background" id="shuffle">Shuffle</button>
+                    <button class="btn btn-background" id="delete">Delete</button>
+                    <button class="btn btn-background" id="backspace">Backspace</button>
+                    <button class="btn btn-background" id="enter">Enter</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./words.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
