@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function getRandWords(words) {
     // TODO: get random word
     targetWords = targetWordDictionary.get(words[0]);
+    totalWords = targetWords.length;
   }
   // create shuffled word and tiles
   function shuffleTiles() {
