@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isValid = false;
     }
     displayErrorMessage(message);
+
     return isValid;
   }
 
